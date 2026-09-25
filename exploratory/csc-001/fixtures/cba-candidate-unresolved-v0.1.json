@@ -1,0 +1,54 @@
+{
+  "type": "argus.correlation_binding.v0",
+  "binding_id": "csc001-cba-candidate-001",
+  "status": "candidate-unresolved",
+  "issued_at": "2026-09-25",
+  "issuer": {
+    "id": "PAMILANGA/PAMIR-ARGUS",
+    "role": "experimental-correlation-binder"
+  },
+  "subjects": [
+    {
+      "source": "TRACE",
+      "evidence_locator": "https://github.com/agentrust-io/examples/blob/main/embodied-action-receipts/fixtures/valid-chain.json",
+      "evidence_identity": {
+        "algorithm": "git-blob-sha1",
+        "value": "0adba677261169413a3a424c50fb65139d2f5b1d"
+      },
+      "execution_ref": "call-material-move-001",
+      "session_ref": "trace-session-embodied-001",
+      "action_ref": "sha256:6572d6707269d815b6f59aadeca709e29a5a7d73330265f2b5feb92d0290b21f"
+    },
+    {
+      "source": "EABC",
+      "evidence_locator": "https://github.com/omwei-org/eabc-external-validation/blob/main/argus/iv001/mapping/EABC_Overlay_v0.3.md",
+      "evidence_identity": {
+        "algorithm": "sha256",
+        "value": "a77c7ceef53e76a71668d6751a3bfd13c8056d52206297eada7f1e6421aab3dd",
+        "identity_scope": "Run 004 extracted evidence file as recorded by EABC Overlay v0.3"
+      },
+      "execution_ref": "run004-a-001",
+      "action_ref": "source-owned Run 004 committed/governed action digest"
+    }
+  ],
+  "relationship": {
+    "claim": "same_execution_event_candidate",
+    "binding_evidence": [],
+    "context_binding": null,
+    "temporal_binding": null
+  },
+  "expected_verifier_result": "UNRESOLVED",
+  "expected_reason": "No independently verifiable cross-source event binding is present.",
+  "non_claims": [
+    "same_execution_event_established",
+    "causality",
+    "authorization",
+    "safety",
+    "independent_physical_effect"
+  ],
+  "notes": [
+    "This fixture intentionally records the current evidence gap.",
+    "The EABC SHA-256 is the extracted evidence-file digest reported by EABC Overlay v0.3; it is not asserted to be the digest of the Markdown overlay itself.",
+    "No TRACE-to-EABC identifier or digest equivalence is invented."
+  ]
+}
