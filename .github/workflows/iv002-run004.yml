@@ -1,0 +1,41 @@
+name: ARGUS IV-002 Run004 Independent Reproduction
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'exploratory/iv002/verify_run004.py'
+      - '.github/workflows/iv002-run004.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  independent-run004:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ARGUS independent verifier
+        uses: actions/checkout@v4
+        with:
+          path: argus
+          persist-credentials: false
+
+      - name: Checkout frozen external source fixtures
+        uses: actions/checkout@v4
+        with:
+          repository: omwei-org/eabc-external-validation
+          ref: a0f6ce4f5d50ad8c1241ea165fb0f8dbcd82a2cf
+          path: source
+          persist-credentials: false
+
+      - name: Verify exact source commit and reproduce E1-E6
+        run: |
+          python3 argus/exploratory/iv002/verify_run004.py source --output iv002_argus_run004_result.json
+
+      - name: Upload reproducibility report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: argus-iv002-run004-report
+          path: iv002_argus_run004_result.json
+          if-no-files-found: warn
