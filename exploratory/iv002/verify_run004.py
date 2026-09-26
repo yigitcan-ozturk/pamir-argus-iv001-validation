@@ -25,7 +25,7 @@ EXPECTED = {
 
 
 def git_blob_sha(data):
-    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\\0" + data).hexdigest()
+    return hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
 
 
 def load_manifest(root):
@@ -98,6 +98,6 @@ if __name__ == "__main__":
         "integrity": integrity, "results": results,
         "all_matches": all(v["matches"] for v in results.values()),
     }
-    args.output.write_text(json.dumps(report, indent=2) + "\\n")
+    args.output.write_text(json.dumps(report, indent=2) + "\n")
     print(json.dumps({"results": results, "all_matches": report["all_matches"],
                       "output": str(args.output)}, indent=2))
